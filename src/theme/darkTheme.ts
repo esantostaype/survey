@@ -6,5 +6,8 @@ export const darkTheme = createTheme({
     primary: {
       main: '#1DFF7D',
     },
+  },
+  typography: {
+    fontFamily: 'IBM Plex Sans, sans-serif',
   }
 })

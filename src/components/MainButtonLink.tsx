@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
 
 interface Props {
   label: string
