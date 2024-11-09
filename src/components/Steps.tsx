@@ -25,7 +25,7 @@ export const Steps = () => {
                 }
                 
               </span>
-              <div>
+              <div className="hidden md:block">
                 <h3 className={`leading-tight mb-1 font-semibold ${isActive ? 'text-accent1' : ''}`}>
                   {step.title}
                 </h3>
@@ -41,7 +41,7 @@ export const Steps = () => {
               >
                 {step.icon}
               </span>
-              <div>
+              <div className="hidden md:block">
                 <h3 className={`leading-tight mb-1 font-semibold ${isActive ? 'text-accent1' : ''}`}>
                   {step.title}
                 </h3>

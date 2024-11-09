@@ -11,7 +11,7 @@ export const BackButton = ({ label, path }: Props) => {
   return (
       <Link
         href={ path }
-        className='flex items-center gap-2 text-accent1 uppercase group font-bold transition-all'
+        className='text-sm md:text-base flex items-center gap-2 text-accent1 uppercase group font-bold py-3 transition-all'
       >
         <div className='relative group-hover:mr-2 group-hover:-ml-2 transition-all'>
           <ArrowBackRoundedIcon/>

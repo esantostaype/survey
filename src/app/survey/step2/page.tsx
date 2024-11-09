@@ -37,7 +37,7 @@ export default function Step2Page() {
       {({ errors, touched, values, handleChange, setFieldValue }) => (
         <Form>
           <Step2 errors={ errors } touched={ touched } values={ values } handleChange={ handleChange } setFieldValue={ setFieldValue } />
-          <div className="mt-12 flex justify-between">
+          <div className="mt-12 flex md:flex-row flex-col gap-2 justify-between">
             <BackButton label="Back" path='/survey/step1' />
             <MainButton type="submit" label="Continue"/>
           </div>

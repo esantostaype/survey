@@ -69,7 +69,7 @@ export const Step1 = ({ errors, touched, values, handleChange, setFieldValue }: 
       
       <SectionForm>
         <LabelForm label="3. Primary company location:" />
-        <div className="flex gap-8">
+        <div className="flex md:flex-row flex-col gap-6 xl:gap-8">
           <FormControl fullWidth>
             <Autocomplete
               value={values.q3}
