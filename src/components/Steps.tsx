@@ -12,7 +12,7 @@ export const Steps = () => {
         const isActive = pathname === step.path
         const isSuccess = !!Cookies.get(`Step${ index + 1 }`)
         return (
-          <li className="mb-8 flex items-start gap-3" key={index}>
+          <li className="mb-4 md:mb-8 flex items-start gap-3" key={index}>
             {
               isSuccess
               ?
