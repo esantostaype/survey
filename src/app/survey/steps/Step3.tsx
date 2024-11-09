@@ -4,7 +4,7 @@ import { FormValuesStep3 } from '@/interfaces';
 import { ErrorForm, LabelForm, SectionForm, TitleForm, SortableItem } from '@/components';
 import { Checkbox, FormControlLabel, FormGroup, Radio, RadioGroup, SelectChangeEvent, TextField } from '@mui/material';
 import { FormikErrors, FormikTouched } from 'formik';
-import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
 interface Props {
@@ -53,16 +53,25 @@ export const Step3 = ({ errors, touched, values, handleChange, setFieldValue }: 
     })
   );
 
-  const handleDragEnd = (event: any) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-    if (active.id !== over.id) {
-      const oldIndex = items.indexOf(active.id);
-      const newIndex = items.indexOf(over.id);
-      const newItems = arrayMove(items, oldIndex, newIndex);
-      setItems(newItems);
-      setFieldValue("q11", newItems)
+  
+    if (over) {
+      const activeId = active.id as string
+      const overId = over.id as string
+  
+      if (activeId !== overId) {
+        const oldIndex = items.indexOf(activeId);
+        const newIndex = items.indexOf(overId);
+  
+        if (oldIndex !== -1 && newIndex !== -1) {
+          const newItems = arrayMove(items, oldIndex, newIndex);
+          setItems(newItems);
+          setFieldValue("q11", newItems);
+        }
+      }
     }
-  };
+  }
 
   return (
     <>

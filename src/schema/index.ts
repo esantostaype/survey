@@ -27,7 +27,7 @@ export const FormSchemaStep3 = Yup.object().shape({
 	q12: Yup.string().required('This field is required'),
 	q13: Yup.string().required('This field is required'),
 	q14: Yup.string().when('q13', {
-		is: (value: any) => typeof value === 'string' && value === 'Yes',
+		is: (value: string) => typeof value === 'string' && value === 'Yes',
 		then: (schema) => schema.required('This field is required'),
 		otherwise: (schema) => schema.notRequired(),
 	})
