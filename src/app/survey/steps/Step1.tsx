@@ -31,7 +31,7 @@ export const Step1 = ({ errors, touched, values, handleChange, setFieldValue }: 
   }
 
   const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldValue("q4", event.target.value);
+    setFieldValue("q3City", event.target.value);
   }
 
   const handleOtherChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +41,7 @@ export const Step1 = ({ errors, touched, values, handleChange, setFieldValue }: 
     <>
       <TitleForm title="General Company Information" />
       <SectionForm>
-        <LabelForm label="1. Sector or industry in which your company operates:" />
+        <LabelForm label="Sector or industry in which your company operates:" />
         <FormGroup>
           {['Retail', 'Professional Services', 'Health and Wellness', 'Technology', 'Manufacturing', 'Education', 'Hospitality and Tourism', 'Other'].map((label) => (
             <FormControlLabel
@@ -58,7 +58,7 @@ export const Step1 = ({ errors, touched, values, handleChange, setFieldValue }: 
       </SectionForm>
       
       <SectionForm>
-        <LabelForm label="2. Company size (number of employees):" />
+        <LabelForm label="Company size (number of employees):" />
         <RadioGroup name="q2" value={values.q2} onChange={handleChange}>
           {['1-10', '11-50', '51-200', '201-500', 'More than 500'].map((label) => (
             <FormControlLabel key={label} value={label} control={<Radio />} label={label} />
@@ -68,21 +68,21 @@ export const Step1 = ({ errors, touched, values, handleChange, setFieldValue }: 
       </SectionForm>
       
       <SectionForm>
-        <LabelForm label="3. Primary company location:" />
+        <LabelForm label="Primary company location:" />
         <div className="flex md:flex-row flex-col gap-6 xl:gap-8">
           <FormControl fullWidth>
             <Autocomplete
-              value={values.q3}
-              onChange={(event, newValue) => setFieldValue("q3", newValue)}
+              value={values.q3State}
+              onChange={(event, newValue) => setFieldValue("q3State", newValue)}
               disablePortal
               options={states}
               renderInput={(params) => <TextField {...params} label="State" />}
             />
-            {touched.q3 && errors.q3 && <ErrorForm label={errors.q3} />}
+            {touched.q3State && errors.q3State && <ErrorForm label={errors.q3State} />}
           </FormControl>
           <FormControl fullWidth>
-            <TextField id="q4" label="City" value={values.q4} onChange={handleCityChange} />
-            {touched.q4 && errors.q4 && <ErrorForm label={errors.q4} />}
+            <TextField id="q3City" label="City" value={values.q3City} onChange={handleCityChange} />
+            {touched.q3City && errors.q3City && <ErrorForm label={errors.q3City} />}
           </FormControl>
         </div>
       </SectionForm>

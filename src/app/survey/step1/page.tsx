@@ -13,7 +13,7 @@ export default function Step1Page() {
   const router = useRouter()
   
   const defaultInitialValues: FormValuesStep1 = {
-    q1: [], q2: '', q3: '', q4: ''
+    q1: [], q2: '', q3State: '', q3City: ''
   }
 
   const [initialValues, setInitialValues] = useState<FormValuesStep1>(defaultInitialValues)

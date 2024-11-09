@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 
 export default function Step3Page() {
   const defaultInitialValues: FormValuesStep3 = {
-    q10: ''
+    q9: '', q10: [], q10Other: '', q11: [], q12: '', q12Explain: '', q13: '', q14: '', q14Explain: ''
   }
 
   const [initialValues, setInitialValues] = useState<FormValuesStep3>(defaultInitialValues)
@@ -25,6 +25,7 @@ export default function Step3Page() {
 
   const handleSubmit = async (values: FormValuesStep3) => {
     Cookies.set('Step3', JSON.stringify(values), { expires: 7 })
+    console.log("STEP 3:", { values })
   }
 
   return (
