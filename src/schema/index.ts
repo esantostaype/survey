@@ -18,3 +18,7 @@ export const FormSchemaStep2 = Yup.object().shape({
 	q8: Yup.string().required('This field is required'),
 	q9: Yup.string().required('This field is required')
 })
+
+export const FormSchemaStep3 = Yup.object().shape({
+	q10: Yup.string().required('This field is required'),
+})

@@ -3,8 +3,8 @@ import { ReactNode } from 'react'
 export interface Step {  
   title: string
   description: string
+  path: string
   icon: ReactNode
-  active: boolean
   success: boolean
 }
 
@@ -23,4 +23,8 @@ export interface FormValuesStep2 {
   q7Other?: string
   q8: string
   q9: string
+}
+
+export interface FormValuesStep3 {
+  q10: string
 }

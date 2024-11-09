@@ -1,13 +1,12 @@
 'use client'
-import { BackButton, MainButton, Steps } from '@/components'
+import { useRouter } from 'next/navigation'
+import { BackButton, MainButton } from '@/components'
 import { Step2 } from '../steps'
-import { stepsData } from '@/data/data'
-import { Formik, Form, FormikHelpers } from 'formik'
+import { Formik, Form } from 'formik'
 import { FormValuesStep2 } from '@/interfaces'
 import { FormSchemaStep2 } from '@/schema'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 
 export default function Step2Page() {
@@ -15,7 +14,7 @@ export default function Step2Page() {
   const router = useRouter()
 
   const defaultInitialValues: FormValuesStep2 = {
-      q5: '', q6: '', q7: [], q8: '', q9: ''
+    q5: '', q6: '', q7: [], q7Other: '', q8: '', q9: ''
   }
 
   const [initialValues, setInitialValues] = useState<FormValuesStep2>(defaultInitialValues)
@@ -28,28 +27,22 @@ export default function Step2Page() {
     }
   }, [])
 
-  const handleSubmit = async (values: FormValuesStep2, actions: FormikHelpers<FormValuesStep2>) => {
+  const handleSubmit = async (values: FormValuesStep2) => {
     Cookies.set('Step2', JSON.stringify(values), { expires: 7 })
+    router.push('/survey/step3')
   }
 
   return (
-    <div className="flex items-start flex-1 gap-16">
-      <div className="flex-[2] sticky top-16">
-        <Steps steps={stepsData} />
-      </div>
-      <div className="flex-[6]">
-        <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={FormSchemaStep2}>
-          {({ errors, touched, values, handleChange, setFieldValue }) => (
-            <Form>
-              <Step2 errors={ errors } touched={ touched } values={ values } handleChange={ handleChange } setFieldValue={ setFieldValue } />
-              <div className="mt-12 flex justify-between">
-                <BackButton label="Back" path='/survey/step1' />
-                <MainButton type="submit" label="Continue"/>
-              </div>
-            </Form>
-          )}
-        </Formik>
-      </div>
-    </div>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={FormSchemaStep2} enableReinitialize>
+      {({ errors, touched, values, handleChange, setFieldValue }) => (
+        <Form>
+          <Step2 errors={ errors } touched={ touched } values={ values } handleChange={ handleChange } setFieldValue={ setFieldValue } />
+          <div className="mt-12 flex justify-between">
+            <BackButton label="Back" path='/survey/step1' />
+            <MainButton type="submit" label="Continue"/>
+          </div>
+        </Form>
+      )}
+    </Formik>
   )
 }

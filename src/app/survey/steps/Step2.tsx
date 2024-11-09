@@ -3,7 +3,7 @@ import { FormValuesStep2 } from '@/interfaces'
 import { ErrorForm, LabelForm, SectionForm, TitleForm } from '@/components'
 import { Checkbox, FormControlLabel, FormGroup, Radio, RadioGroup, SelectChangeEvent, TextField } from '@mui/material'
 import { FormikErrors, FormikTouched } from 'formik'
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 
 interface Props {
   errors: FormikErrors<FormValuesStep2>
@@ -14,39 +14,21 @@ interface Props {
 }
 
 export const Step2 = ({ errors, touched, values, handleChange, setFieldValue }: Props) => {
-  const [otherValue, setOtherValue] = useState("")
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    let currentValues = values[name as keyof FormValuesStep2] as unknown as string[];
-
-    if (value === "Other") {
-      if (currentValues.some((item) => item.startsWith("Other:"))) {
-        setFieldValue(
-          name,
-          currentValues.filter((item) => !item.startsWith("Other:"))
-        );
-        setOtherValue("")
-      } else {
-        setFieldValue(name, [...currentValues, "Other: "]);
-      }
+    const currentValues = values[name as keyof FormValuesStep2] as unknown as string[]
+    
+    if (currentValues.includes(value)) {
+      setFieldValue(name, currentValues.filter((v) => v !== value))
     } else {
-      if (currentValues.includes(value)) {
-        setFieldValue(name, currentValues.filter((v) => v !== value));
-      } else {
-        setFieldValue(name, [...currentValues, value]);
-      }
+      setFieldValue(name, [...currentValues, value])
     }
-  };
+  }
 
   const handleOtherChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setOtherValue(value);
-    const updatedValues = values.q7.map((item) =>
-      item.startsWith("Other:") ? `Other: ${value}` : item
-    );
-    setFieldValue("q7", updatedValues);
-  };
+    setFieldValue("q7Other", event.target.value);
+  }
 
   return (
     <>
@@ -74,27 +56,14 @@ export const Step2 = ({ errors, touched, values, handleChange, setFieldValue }: 
         <FormGroup>
           {['Outdated design', 'Limited functionalities', 'Not responsive (not mobile-friendly)', 'Difficult to update content', 'Slow loading speed', 'Other'].map((label) => (
             <FormControlLabel
-              control={
-                <Checkbox
-                  name="q7"
-                  value={label}
-                  checked={label === "Other" ? values.q7.some((item) => item.startsWith("Other:")) : values.q7.includes(label)}
-                  onChange={handleCheckboxChange}
-                />
-              }
+              control={<Checkbox name="q7" value={ label } checked={ values.q7.includes(label) } onChange={ handleCheckboxChange } />}
               label={label}
               key={label}
             />
           ))}
         </FormGroup>
         {values.q7.some((item) => item.startsWith("Other")) && (
-          <TextField
-            label="Please specify"
-            value={otherValue}
-            onChange={handleOtherChange}
-            fullWidth
-            margin="normal"
-          />
+          <TextField id="q7Other" label="Please specify" value={values.q7Other} onChange={handleOtherChange} fullWidth margin="normal"/>
         )}
         { touched.q7 && errors.q7 && <ErrorForm label={ errors.q7 } />}
       </SectionForm>

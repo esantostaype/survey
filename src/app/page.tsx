@@ -15,7 +15,7 @@ export default function Home() {
         <li className="flex gap-2 items-start"><CheckCircleRoundedIcon color="primary"/>The survey will take approximately <strong>10-15 minutes.</strong></li>
         <li className="flex gap-2 items-start"><CheckCircleRoundedIcon color="primary"/>If any question does not apply to your situation, you may select the corresponding option or leave it blank.</li>
       </ul>
-      <MainButtonLink label='Start Survey' path='/survey'/>
+      <MainButtonLink label='Start Survey' path='/survey/step1'/>
     </div>
     </>
   )

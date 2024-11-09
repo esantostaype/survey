@@ -1,7 +1,6 @@
 'use client'
-import { useRouter } from 'next/navigation'
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import Link from 'next/link'
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 
 interface Props {
   label: string
@@ -9,7 +8,6 @@ interface Props {
 }
 
 export const BackButton = ({ label, path }: Props) => {
-  const router = useRouter()
   return (
       <Link
         href={ path }

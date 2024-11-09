@@ -6,7 +6,7 @@ import { Autocomplete, FormControl, Radio, RadioGroup, SelectChangeEvent, TextFi
 import { ErrorForm, LabelForm, SectionForm, TitleForm } from '@/components'
 import { FormValuesStep1 } from '@/interfaces'
 import { ReactNode } from 'react'
-import { states } from '@/data/data'
+import { states } from '@/data'
 import { FormikErrors, FormikTouched } from 'formik'
 
 interface Props {
@@ -43,18 +43,18 @@ export const Step1 = ({ errors, touched, values, handleChange, setFieldValue }: 
       <SectionForm>
         <LabelForm label="1. Sector or industry in which your company operates:" />
         <FormGroup>
-        {['Retail', 'Professional Services', 'Health and Wellness', 'Technology', 'Manufacturing', 'Education', 'Hospitality and Tourism', 'Other'].map((label) => (
-          <FormControlLabel
-            control={<Checkbox name="q1" value={ label } checked={ values.q1.includes(label) } onChange={ handleCheckboxChange } />}
-            label={ label }
-            key={ label }
-          />
-        ))}
-        { touched.q1 && errors.q1 && <ErrorForm label={ errors.q1 } />}
-      </FormGroup>
+          {['Retail', 'Professional Services', 'Health and Wellness', 'Technology', 'Manufacturing', 'Education', 'Hospitality and Tourism', 'Other'].map((label) => (
+            <FormControlLabel
+              control={<Checkbox name="q1" value={ label } checked={ values.q1.includes(label) } onChange={ handleCheckboxChange } />}
+              label={ label }
+              key={ label }
+            />
+          ))}
+        </FormGroup>
         {values.q1.some((item) => item.startsWith("Other")) && (
           <TextField id="q1Other" label="Please specify" value={values.q1Other} onChange={handleOtherChange} fullWidth margin="normal"/>
         )}
+        { touched.q1 && errors.q1 && <ErrorForm label={ errors.q1 } />}
       </SectionForm>
       
       <SectionForm>

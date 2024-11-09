@@ -10,43 +10,43 @@ export const stepsData: Step[] = [
   {
     title: 'Company',
     description: 'General Company Information',
+    path: '/survey/step1',
     icon: <BusinessRoundedIcon fontSize="small" />,
-    active: true,
     success: false
   },
   {
     title: 'Digital Presence',
     description: 'Current Digital Presence',
+    path: '/survey/step2',
     icon: <LanguageRoundedIcon fontSize="small" />,
-    active: false,
     success: false
   },
   {
     title: 'Digital Needs',
     description: 'Digital Needs and Preferences',
+    path: '/survey/step3',
     icon: <AdsClickRoundedIcon fontSize="small" />,
-    active: false,
-    success: false,
+    success: false
   },
   {
     title: 'Perceptions',
     description: 'Perceptions of the Market and Competition',
+    path: '/survey/step4',
     icon: <BusinessCenterOutlinedIcon fontSize="small" />,
-    active: false,
     success: false
   },
   {
     title: 'Budget',
     description: 'Budget and Purchase Decision',
+    path: '/survey/step5',
     icon: <AttachMoneyOutlinedIcon fontSize="small" />,
-    active: false,
     success: false
   },
   {
     title: 'Final',
     description: 'Information Channels and Additional Comments',
+    path: '/survey/step6',
     icon: <InfoOutlinedIcon fontSize="small" />,
-    active: false,
     success: false
   }
 ]
